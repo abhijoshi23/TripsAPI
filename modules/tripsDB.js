@@ -37,11 +37,12 @@ module.exports = class TripDB {
            const db = mongoose.createConnection(
                connectionString
             );
-           
+
             db.once('error', (err) => {
+                console.log("I am opening database")
                 reject(err);
             });
-            db.once('open', () => {
+            db.once('open', () => {    
                 this.Trip = db.model("trips", tripSchema);
                 resolve();
             });
@@ -63,6 +64,7 @@ module.exports = class TripDB {
     }
 
     getTripById(id) {
+        console.log(this.Trip._id);
         return this.Trip.findOne({_id: id}).exec();
     }
 
