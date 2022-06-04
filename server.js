@@ -40,7 +40,7 @@ app.get("/api/trips", (req, res) => {
     if(req.query.page || req.query.perPage){
     db.getAllTrips(req.query.page, req.query.perPage)
         .then((rest) => {
-            res.status(200).json({message: "Found all trips"});
+            res.status(200).json(rest);
         }).catch((err) => {
             res.status(204).json({ message: "No Trips found." });
             res.status(500).json({ message: "Internal server error." })
