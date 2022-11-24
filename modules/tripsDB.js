@@ -47,7 +47,7 @@ module.exports = class TripDB {
                 resolve();
             });
         });
-    };
+    }
 
     async addNewTrip(data) {
         const newTrip = new this.Trip(data);
