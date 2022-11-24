@@ -1,7 +1,7 @@
 const express = require("express");
 const res = require("express/lib/response");
 const app = express();
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 const HTTP_PORT = process.env.PORT || 8080;
 const TripDB = require("./modules/tripsDB.js");
 const db = new TripDB();
@@ -86,5 +86,5 @@ app.delete("/api/trips/:id", (req, res) => {
             });
     }
     res.status(204).json({ message: "Restaurant not found." });
-})
+});
 
