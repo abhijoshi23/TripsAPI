@@ -20,7 +20,7 @@ db.initialize(connectionString).then(() => {
 });
 }).catch((err) => {
     console.log(err);
-})
+});
 
 app.get('/', (req, res) => {
     res.json({ msg: 'Your API is up' });
