@@ -24,7 +24,6 @@ db.initialize(connectionString).then(() => {
 
 app.get('/', (req, res) => {
     res.json({ msg: 'Your API is up' });
-
 });
 
 app.post("/api/trips", (req, res) => {
