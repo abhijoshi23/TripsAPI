@@ -10,8 +10,8 @@ var cors = require("cors");
 app.use(cors());
 app.use(express.json());
 dotenv.config();
-const adminPassword = encodeURIComponent( process.env.ADMIN_PASSWORD )
 
+const adminPassword = encodeURIComponent( process.env.ADMIN_PASSWORD )
 var connectionString = `mongodb+srv://avjoshi1:${adminPassword}@cluster0.v5jsj.mongodb.net/sample_training?retryWrites=true&w=majority`;
 
 db.initialize(connectionString).then(() => {
@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
     res.json({ msg: 'Your API is up' });
 });
 
+
 app.post("/api/trips", (req, res) => {
     db.addNewTrip(req.body)
         .then(() => {
@@ -34,6 +35,7 @@ app.post("/api/trips", (req, res) => {
             res.status(500).json({ message: "Error adding trip. " + err.message });
         });
 });
+
 
 app.get("/api/trips", (req, res) => {
     if(req.query.page || req.query.perPage){
@@ -50,6 +52,7 @@ app.get("/api/trips", (req, res) => {
     }
 });
 
+
 app.get("/api/trips/:id", (req, res) => {
     console.log (req.params.id)
     db.getTripById(req.params.id)
@@ -60,6 +63,7 @@ app.get("/api/trips/:id", (req, res) => {
             res.status(500).json({ message: "Internal server error." })
         })
 });
+
 
 app.put("/api/trips/:id", (req, res) => {
     console.log(req.body._id)
@@ -75,6 +79,7 @@ app.put("/api/trips/:id", (req, res) => {
     }
 });
 
+
 app.delete("/api/trips/:id", (req, res) => {
     if (req.params.id == req.body._id) {
         db.deleteTripById(req.params.id)
@@ -86,4 +91,3 @@ app.delete("/api/trips/:id", (req, res) => {
     }
     res.status(204).json({ message: "Restaurant not found." });
 });
-
